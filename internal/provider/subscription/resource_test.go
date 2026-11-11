@@ -80,6 +80,7 @@ func TestMockSubscriptionResource(t *testing.T) {
 
 func TestAccSubscriptionResource(t *testing.T) {
 	resource.Test(t, resource.TestCase{
+		PreCheck:                 func() { acceptance.TestAccPreCheck(t) },
 		ProtoV6ProviderFactories: acceptance.TestAccProtoV6ProviderFactories,
 		Steps: []resource.TestStep{
 			{
