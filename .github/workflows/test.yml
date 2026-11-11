@@ -201,5 +201,7 @@ jobs:
         run: make testacc
         env:
           TF_ACC: "1"
-          DIAGRID_API_KEY: ${{ secrets.CATALYST_API_KEY }}
+          # Dependabot runs only see Dependabot secrets, so this secret must
+          # exist under both Actions and Dependabot secrets.
+          DIAGRID_API_KEY: ${{ secrets.DIAGRID_API_KEY }}
         timeout-minutes: 10
