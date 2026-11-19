@@ -37,15 +37,23 @@ provider "diagrid" {
 }
 ```
 
-Both settings are optional in the provider block. When left out, the provider reads `DIAGRID_API_KEY` and `DIAGRID_API_ENDPOINT` from the environment, and the endpoint defaults to `https://api.r1.diagrid.io`.
+The example declares `api_key` and `endpoint` in [`examples/provider/variables.tf`](examples/provider/variables.tf), without defaults. Set them with `TF_VAR_api_key` and `TF_VAR_endpoint`, `-var` flags, or a `.tfvars` file you do not commit.
 
-To get an API key, sign in to the Diagrid Console and create one under your organization's API keys, or run `diagrid apikeys create` with the Diagrid CLI. Keep the key out of version control: pass it through the environment or a `.tfvars` file you do not commit.
+Both settings are optional. To read them from the environment instead, leave them out of the provider block:
+
+```terraform
+provider "diagrid" {}
+```
+
+The provider then reads `DIAGRID_API_KEY` and `DIAGRID_API_ENDPOINT`, and the endpoint defaults to `https://api.r1.diagrid.io`:
 
 ```shell
 export DIAGRID_API_KEY="<your-api-key>"
 terraform init
 terraform apply
 ```
+
+To get an API key, sign in to the Diagrid Console and create one under your organization's API keys, or run `diagrid apikeys create` with the Diagrid CLI. Keep the key out of version control.
 
 Diagrid has a permanent free tier. See [pricing](https://www.diagrid.io/pricing).
 
